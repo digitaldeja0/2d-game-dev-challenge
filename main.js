@@ -1,23 +1,25 @@
 import './style.css'
 import javascriptLogo from './javascript.svg'
-import { setupCounter } from './counter.js'
+import{ player }from "./player.js"
+const canvas = document.querySelector('#canvas')
+const ctx = canvas.getContext('2d')
+canvas.width = 500
+canvas.height = 500
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
 
-setupCounter(document.querySelector('#counter'))
+
+let hue = 0; 
+let frame = 0; 
+let score = 0;
+let gamespeed = 2;
+let temp = canvas.height-90
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width, canvas.height)
+  // ctx.fillRect(10,temp,50,50)
+  player.update()
+ player.draw()
+  requestAnimationFrame(animate)
+}
+animate()
+
